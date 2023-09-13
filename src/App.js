@@ -7,7 +7,7 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState('');
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(60);
   const [showQuestion, setShowQuestion] = useState(true);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
 
@@ -18,7 +18,7 @@ function App() {
       } else {
         clearInterval(countdown);
         handleNextQuestion();
-        setTimer(10);
+        setTimer(60);
       }
     }, 1000);
 
@@ -28,7 +28,7 @@ function App() {
   }, [timer]);
 
   useEffect(() => {
-    fetch(`https://opentdb.com/api.php?amount=5`)
+    fetch(`https://opentdb.com/api.php?amount=100`)
       .then((response) => response.json())
       .then((data) => {
         const options = data.results.map((value) => {
@@ -57,7 +57,7 @@ function App() {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion + 1);
-    setTimer(10);
+    setTimer(60);
   };
 
   return (
